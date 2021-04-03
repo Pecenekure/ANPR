@@ -12,7 +12,7 @@ def rescaleFrame(frame, scale=3):
         dimensions = (width, height)
         return cv.resize(frame, dimensions, interpolation=cv.INTER_AREA)
 
-path = glob.glob("C:/Users/Adam/Desktop/Python/*.png")
+path = glob.glob("*.png")
 for i, file in enumerate(path):
     img = cv.imread(file)
     img = rescaleFrame(img)

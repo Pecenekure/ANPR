@@ -3,12 +3,13 @@ import numpy as np
 import glob
 from matplotlib import pyplot as plt
 from time import time
+import config as cf
 
 start = time()
 
 
-located_chars = glob.glob("C:/Users/Adam/Desktop/Python/located/*.png")
-templates = glob.glob("C:/Users/Adam/Desktop/Python/Symbols/*.png")
+located_chars = glob.glob("located/*.png")
+templates = glob.glob("Symbols/*.png")
 spz = []
 
 for located_char in located_chars:

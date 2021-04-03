@@ -1,19 +1,16 @@
 import cv2 as cv
 import numpy as np
-import glob
-from matplotlib import pyplot as plt
 from time import time
+import config as cf
 
 start = time()
 
-#img = cv.imread('fotky/6.jpg')
-
-path = glob.glob("C:/Users/Adam/Desktop/Python/fotky/*.jpg")
+path = cf.pictures
 
 
 cislo = 0
 for file in path:
-    img = cv.imread("C:/Users/Adam/Desktop/Python/fotky/4.jpg")
+    img = cv.imread("fotky/4.jpg")
     #img = cv.imread(file)
 
     img = img[int(img.shape[1]*0.45):int(img.shape[1])

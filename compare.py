@@ -10,7 +10,6 @@ import cProfile, pstats, io
 pr = cProfile.Profile()
 pr.enable()
 
-
 path = cf.pictures
 database = pd.read_excel('database.xlsx')
 

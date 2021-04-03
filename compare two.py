@@ -6,9 +6,9 @@ from time import time
 
 
 spz = []
-templates = glob.glob("C:/Users/Adam/Desktop/Python/Symbols/*.png")
+templates = glob.glob("Symbols/*.png")
 
-test_img = cv.imread("C:/Users/Adam/Desktop/Python/located/Znak_pos_401.png")
+test_img = cv.imread("located/Znak_pos_401.png")
 test_img = cv.cvtColor(test_img, cv.COLOR_BGR2GRAY)
 ret,test_img = cv.threshold(test_img,150,255,cv.THRESH_BINARY)
 

@@ -1,10 +1,10 @@
 import pickle
 import glob
 
-pictures = glob.glob("C:/Users/Adam/Desktop/Python/fotky/*.jpg")
+pictures = glob.glob("fotky/*.jpg")
 
 #templates = glob.glob("C:/Users/Adam/Desktop/Python/Symbols/*.png")
-templates_pickle = ("C:/Users/Adam/Desktop/Python/templates_dict.plk")
+templates_pickle = ("templates_dict.plk")
 
 with open(templates_pickle, 'rb') as fd:
     templates = pickle.load(fd)
