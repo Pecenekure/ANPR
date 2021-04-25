@@ -2,15 +2,14 @@ import cv2 as cv
 import compare
 import cProfile, pstats, io
 
+pr = cProfile.Profile()
+pr.enable()
 
 
+#cap = cv.VideoCapture("videos/IMG_4726.MP4")
+cap = cv.VideoCapture(0)
 
-
-if __name__ == "__main__":
-    pr = cProfile.Profile()
-    pr.enable()
-    cap = cv.VideoCapture("videos/IMG_4432.MP4")
-    #cap = cv.VideoCapture(0)
+def run(cap):
 
     if not cap.isOpened():
         raise IOError("Cannot open video file")
@@ -19,9 +18,10 @@ if __name__ == "__main__":
     while(cap.isOpened()):
         counter += 1
         ret, frame = cap.read()
-        if ((counter%10)==0): # video z iPhonu ma 30fps takze hodnota 15 znamena kontrolu 2x za sekundu
+        if ((counter%2)==0): # video z iPhonu ma 30fps takze hodnota 15 znamena kontrolu 2x za sekundu
             gray = cv.cvtColor(frame, cv.COLOR_BGR2GRAY)
-            img = frame
+            gray = gray[200:500,100:1100]
+            img = frame[200:500,100:1100]
 
             compare.performRecognition(gray,img)
 
@@ -39,3 +39,5 @@ if __name__ == "__main__":
     ps.print_stats()
     print(s.getvalue())
 
+if __name__ == "__main__":
+    run(cap)

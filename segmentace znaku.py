@@ -12,7 +12,7 @@ def rescaleFrame(frame, scale=3):
         dimensions = (width, height)
         return cv.resize(frame, dimensions, interpolation=cv.INTER_AREA)
 
-path = glob.glob("*.png")
+path = glob.glob("Oriznuty obrazek 1.png")
 for i, file in enumerate(path):
     img = cv.imread(file)
     img = rescaleFrame(img)
@@ -35,7 +35,7 @@ for i, file in enumerate(path):
         x,y,w,h = cv.boundingRect(cnt)
         print("w: {}, h:{}, xpos:{}".format(w,h,x))
         if h < 0.9*HEIGHT and h > 0.4*HEIGHT:
-            if w < 0.13*WIDTH and w > 0.03*WIDTH: 
+            if w < 0.13*WIDTH and w > 0.03*WIDTH:
                 print("znak nalezen v bode:", x)                      
                 znak = th1[y:y+h,x:x+w]
                 znak = cv.resize(znak,(50,100), interpolation=cv.INTER_AREA)
