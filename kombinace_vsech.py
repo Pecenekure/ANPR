@@ -10,11 +10,11 @@ path = cf.pictures
 
 cislo = 0
 for file in path:
-    img = cv.imread("fotky/4.jpg")
+    img = cv.imread("fotky/nove/IMG_4738.jpeg")
     #img = cv.imread(file)
 
-    img = img[int(img.shape[1]*0.45):int(img.shape[1])
-             ,int(img.shape[0]*0.1):int(img.shape[0]*0.9)]
+    # img = img[int(img.shape[1]*0.45):int(img.shape[1])
+    #          ,int(img.shape[0]*0.1):int(img.shape[0]*0.9)]
     img_copy = img.copy()
 
     #img = rescaleFrame(img)
@@ -57,7 +57,7 @@ for file in path:
     contours = contours + contours2 + contours3 + contours4
 
     # odfiltrovani mensich kontur
-    contours = sorted(contours, key = cv.contourArea, reverse = True)[:150]
+    contours = sorted(contours, key = cv.contourArea, reverse = True)[:50]
     print('pocet regionu:', len(contours))
 
     # vykresleni nalezenych regionu
@@ -119,14 +119,14 @@ for file in path:
                         #print("angle:", angle)
                         
                 #break
-            """
+
             else:
                 cv.drawContours(img, [cnt], -1, (255,0,255), 2)
                 new_img = img_copy[y:y+h,x:x+w]
                 cv.imwrite('Oriznuty obrazek ' + str(idx) + '.png', new_img)
                 idx+=1
             #return idx
-            """
+
     print("pocet ulozenych obrazku:", idx)
 
 

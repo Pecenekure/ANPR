@@ -145,7 +145,7 @@ def performRecognition(img, method = 'cnn'):  ##################################
 
     SPZ_conture = None
     idx = 1
-    authenticated_spz =  {'spz':'nic', 'car':'nic'}
+    authenticated_spz =  {'spz':'nic', 'car':'nic', 'distance':0}
     acces = False
     for cnt in contours:
         if acces == False:
@@ -174,6 +174,7 @@ def performRecognition(img, method = 'cnn'):  ##################################
                         if sirka * delka > 0.85 * area and sirka * delka < 1.15 * area:
 
                             ################# FUNKCE NA MERENI VZDALENOSTI
+                            authenticated_spz['distance'] = 1/sirka
                             #print("Vzdalenost: ", sirka, sirka2, delka, delka2)
                             ###############
                             SPZ_conture = cnt
@@ -199,7 +200,8 @@ def performRecognition(img, method = 'cnn'):  ##################################
                                         database.loc[database.SPZ == spz].Names.values))
                                     print(len(symbols))
                                     #cv.imwrite('Obrazek ' + str(counter) + '.png', img_copy)
-                                    authenticated_spz = {'spz':spz,'car': database.loc[database.SPZ == spz].Names.values}
+                                    authenticated_spz['spz'] = spz
+                                    authenticated_spz['car'] = database.loc[database.SPZ == spz].Names.values
 
                                 elif (database.SPZ == _spz).any():
                                     succesfull_recognitions += 1
@@ -208,7 +210,9 @@ def performRecognition(img, method = 'cnn'):  ##################################
                                         database.loc[database.SPZ == _spz].Names.values))
                                     print(len(symbols))
                                     #cv.imwrite('Obrazek ' + str(counter) + '.png', img_copy)
-                                    authenticated_spz = {'spz':_spz, 'car':database.loc[database.SPZ == _spz].Names.values}
+                                    #authenticated_spz = {'spz':_spz, 'car':database.loc[database.SPZ == _spz].Names.values}
+                                    authenticated_spz['spz'] = _spz
+                                    authenticated_spz['car'] = database.loc[database.SPZ == _spz].Names.values
 
                         spz = None
                         _spz = None
