@@ -16,8 +16,8 @@ class Play:
         self.canvas = tk.Canvas(parent)  # , relheight=HEIGHT, width = WIDTH, bg='#d5822a')
         self.canvas.pack()
         ################################################################## VSTUPNI PARAMETRY
-        self.source = 0
-        #self.source = "videos/IMG_4726.MP4"
+        #self.source = 0
+        self.source = "videos/IMG_4726.MP4"
         self.license_plate = {'spz':'nic', 'car':'nic', 'distance':0}
         self.method = 'cnn'
         self.cap = cv.VideoCapture(self.source)
@@ -57,10 +57,10 @@ class Play:
         self.spzLabel = tk.Label(self.resultFrame, text='spz', font = 120)
         self.spzLabel.place(rely=0.5, relwidth=1, relheight=0.5)
 
-        self.authenticationLabel = tk.Label(parent, text='cgnjhfd', font=60)
+        self.authenticationLabel = tk.Label(parent, text='', font=60)
         self.authenticationLabel.place(relx = 0.5, rely=0.85, relwidth=0.4, relheight=0.1)
 
-        self.distanceLabel = tk.Label(parent, text='cgnjhfd', font=60)
+        self.distanceLabel = tk.Label(parent, text='', font=60)
         self.distanceLabel.place(anchor='ne', relx=0.95, rely=0.30, relwidth=0.25, relheight=0.16)
 
         self.refresh()
@@ -82,11 +82,11 @@ class Play:
 
         ret, frame = self.cap.read()
         succesful, located_frame, self.license_plate = compare.performRecognition(frame, method= self.method)  ###### TADY VOLAM FUNKCIONALITU
-        if succesful:
+        if self.license_plate['distance']:
             self.spz_img = tk.PhotoImage(file='gui_pics/Oriznuty obrazek.png')
             self.spzImgLabel = tk.Label(self.spzFrame, image=self.spz_img)
             self.spzImgLabel.place(relwidth=1, relheight=1)
-            self.distanceLabel.configure(text='Distance: {}'.format(str(self.license_plate['distance'])))
+            self.distanceLabel.configure(text='Distance: {:.2f}'.format(self.license_plate['distance']))
         RGB = cv.cvtColor(located_frame, cv.COLOR_BGR2RGB)
         RGB = Image.fromarray(RGB)
         RGB = ImageTk.PhotoImage(RGB)

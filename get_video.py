@@ -6,8 +6,8 @@ pr = cProfile.Profile()
 pr.enable()
 
 
-#cap = cv.VideoCapture("videos/IMG_4726.MP4")
-cap = cv.VideoCapture(0)
+cap = cv.VideoCapture("videos/IMG_4726.MP4")
+#cap = cv.VideoCapture(0)
 
 def run(cap):
 
@@ -23,7 +23,7 @@ def run(cap):
             gray = gray[200:500,100:1100]
             img = frame[200:500,100:1100]
 
-            compare.performRecognition(gray,img)
+            success, result_img,a = compare.performRecognition(img, method = "compare")
 
             #cv.imshow('frame', gray)
             #time.sleep(1)
@@ -38,6 +38,7 @@ def run(cap):
     ps = pstats.Stats(pr, stream=s).sort_stats('cumulative')
     ps.print_stats()
     print(s.getvalue())
+    print("framu:", counter)
 
 if __name__ == "__main__":
     run(cap)

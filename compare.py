@@ -108,8 +108,8 @@ def performRecognition(img, method = 'cnn'):  ##################################
     #print('{} method runing....'.format(method))
     start = time()
     gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
-    img = img[200:500, 100:1100]
-    gray = gray[200:500, 100:1100]
+    img = img[250:500, 100:1100]
+    gray = gray[250:500, 100:1100]
     img_copy = img.copy()
     cislo = 0
     succesfull_recognitions = 0
@@ -174,7 +174,7 @@ def performRecognition(img, method = 'cnn'):  ##################################
                         if sirka * delka > 0.85 * area and sirka * delka < 1.15 * area:
 
                             ################# FUNKCE NA MERENI VZDALENOSTI
-                            authenticated_spz['distance'] = 1/sirka
+                            authenticated_spz['distance'] = 70/sirka
                             #print("Vzdalenost: ", sirka, sirka2, delka, delka2)
                             ###############
                             SPZ_conture = cnt
@@ -214,6 +214,11 @@ def performRecognition(img, method = 'cnn'):  ##################################
                                     authenticated_spz['spz'] = _spz
                                     authenticated_spz['car'] = database.loc[database.SPZ == _spz].Names.values
 
+                                elif len(spz)==7:
+                                    authenticated_spz['spz'] = spz
+                                elif len(_spz)==7:
+                                    authenticated_spz['spz'] = _spz
+
                         spz = None
                         _spz = None
 
@@ -248,7 +253,7 @@ if __name__ == "__main__":
         # Converting BGR to Grayscale image
         gray = cv.cvtColor(img, cv.COLOR_BGR2GRAY)
         start = time()
-        success, result_img = performRecognition(gray, img)
+        success, result_img,a = performRecognition(img, method = "compare")
         succesfull_recognitions += success
 
         #cv.imshow('Nalezena SPZ', result_img)

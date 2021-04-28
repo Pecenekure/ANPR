@@ -3,8 +3,8 @@ import glob
 import cv2 as cv
 import os
 
-method = 'cnn'
-#method = 'compare'
+#method = 'cnn'
+method = 'compare'
 
 
 
